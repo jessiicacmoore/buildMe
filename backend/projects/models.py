@@ -40,18 +40,15 @@ class Chat(models.Model):
   application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name="messages")
   message = models.TextField()
   timestamp = models.DateTimeField(auto_now_add=True)
-  
-
-
-
-
-class Stage(models.Model):
- applicant = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="stage")
- project = models.ForeignKey(Project, )
- 
-
 
 class Task(models.Model):
-  applicant = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="tasks")
-
-     
+  STAGE_CHOICES = [
+    ('complete', 'Complete'),
+    ('in_progress', 'In progress'),
+    ('high', 'High Priority'),
+    ('medium', 'Medium Priority'),
+    ('low', 'Low Priority'),
+  ]
+  project = models.ForeignKey(Project, related_name="tasks")
+  message = models.TextField()
+  stage = models.CharField(max_length=50, choices=STAGE_CHOICES, default='high')
