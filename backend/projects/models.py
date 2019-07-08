@@ -6,7 +6,6 @@ class CustomUser(AbstractUser):
     ('developer', 'Developer'),
     ('business', 'Business')
   ]
-  name = models.CharField(max_length=255)
   profile = models.CharField(max_length=50, choices=PROFILE_CHOICES, default='developer')
   desc = models.TextField()
   website = models.URLField(blank=True)
@@ -14,7 +13,7 @@ class CustomUser(AbstractUser):
   github = models.URLField(blank=True)
 
   def __str__(self):
-    return f"{self.name}, {self.email}"
+    return f"{self.first_name}, {self.email}"
 
 class Project(models.Model):
   TYPE_CHOICES = [
