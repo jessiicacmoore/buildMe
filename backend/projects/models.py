@@ -29,5 +29,7 @@ class Project(models.Model):
   creation_date = models.DateField(auto_now_add=True)
   published_date = models.DateField(blank=true)
   
-  
+class Application(models.Model):
+    applicant = 
+
 
