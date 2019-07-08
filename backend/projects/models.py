@@ -43,12 +43,12 @@ class Chat(models.Model):
 
 class Task(models.Model):
   STAGE_CHOICES = [
-    ('complete', 'Complete'),
+    ('completed', 'Completed'),
     ('in_progress', 'In progress'),
     ('high', 'High Priority'),
     ('medium', 'Medium Priority'),
     ('low', 'Low Priority'),
   ]
-  project = models.ForeignKey(Project, related_name="tasks")
+  project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="tasks")
   message = models.TextField()
   stage = models.CharField(max_length=50, choices=STAGE_CHOICES, default='high')
