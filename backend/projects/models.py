@@ -30,6 +30,8 @@ class Project(models.Model):
   published_date = models.DateField(blank=true)
   
 class Application(models.Model):
-    applicant = 
-
+    applicant = models.ForeignKey(User, on_delete=models.CASCADE, related_name="applications")
+    project = models.ForeignKey(Project, related_name="applications")
+    cover_letter = models.TextField()
+    is_hired = models.BooleanField(default=False)
 
