@@ -27,11 +27,11 @@ class Project(models.Model):
   project_type = models.CharField(max_length=50, choices=TYPE_CHOICES, default='full_project')
   is_draft = models.BooleanField(default=True)
   creation_date = models.DateField(auto_now_add=True)
-  published_date = models.DateField(blank=true)
+  published_date = models.DateField(blank=True)
   
 class Application(models.Model):
   applicant = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="applications")
-  project = models.ForeignKey(Project, related_name="applications")
+  project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="applications")
   cover_letter = models.TextField()
   is_hired = models.BooleanField(default=False)
 

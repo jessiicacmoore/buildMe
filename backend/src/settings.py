@@ -37,10 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users.apps.UsersConfig',
-
+    'projects.apps.ProjectsConfig',
     'rest_framework',
-    'projects',
 ]
 
 MIDDLEWARE = [
@@ -106,7 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'users.CustomUser' 
+AUTH_USER_MODEL = 'projects.CustomUser' 
 
 
 
