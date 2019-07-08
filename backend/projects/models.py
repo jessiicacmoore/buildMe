@@ -21,7 +21,7 @@ class Project(models.Model):
     ('maintenance', 'Maintenance'),
     ('full_project', 'Full Project')
   ]
-  owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="projects")
+  owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="projects")
   title = models.CharField(max_length=255)
   description = models.TextField()
   project_type = models.CharField(max_length=50, choices=TYPE_CHOICES, default='full_project')
@@ -30,8 +30,28 @@ class Project(models.Model):
   published_date = models.DateField(blank=true)
   
 class Application(models.Model):
-    applicant = models.ForeignKey(User, on_delete=models.CASCADE, related_name="applications")
-    project = models.ForeignKey(Project, related_name="applications")
-    cover_letter = models.TextField()
-    is_hired = models.BooleanField(default=False)
+  applicant = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="applications")
+  project = models.ForeignKey(Project, related_name="applications")
+  cover_letter = models.TextField()
+  is_hired = models.BooleanField(default=False)
 
+class Chat(models.Model):
+  user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="messages")
+  application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name="messages")
+  message = models.TextField()
+  timestamp = models.DateTimeField(auto_now_add=True)
+  
+
+
+
+
+class Stage(models.Model):
+ applicant = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="stage")
+ project = models.ForeignKey(Project, )
+ 
+
+
+class Task(models.Model):
+  applicant = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="tasks")
+
+     
