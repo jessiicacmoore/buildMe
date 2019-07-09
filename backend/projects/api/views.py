@@ -10,13 +10,21 @@ class ProjectDetailView(RetrieveAPIView):
   queryset = Project.objects.all()
   serializer_class = ProjectSerializer
 
-class ApplicationListView(ListAPIView):
-  queryset = Application.objects.all()
-  serializer_class = ApplicationSerializer
+class ProfileListView(ListAPIView):
+  queryset = CustomUser.objects.all()
+  serializer_class = ProfileSerializer
 
-class ApplicationDetailView(RetrieveAPIView):
-  queryset = Application.objects.all()
-  serializer_class = ApplicationSerializer
+class ProfileDetailView(RetrieveAPIView):
+  queryset = CustomUser.objects.all()
+  serializer_class = ProfileSerializer
+
+# class ApplicationListView(ListAPIView):
+#   queryset = Application.objects.all()
+#   serializer_class = ApplicationSerializer
+
+# class ApplicationDetailView(RetrieveAPIView):
+#   queryset = Application.objects.all()
+#   serializer_class = ApplicationSerializer
 
 # class TaskListView(ListAPIView):
 #   queryset = Task.objects.all()
