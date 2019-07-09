@@ -8,7 +8,7 @@ class CustomUser(AbstractUser):
   ]
   profile = models.CharField(max_length=50, choices=PROFILE_CHOICES, default='developer')
   profile_picture = models.URLField()
-  desc = models.TextField()
+  description = models.TextField()
   website = models.URLField(blank=True)
   linkedin = models.URLField(blank=True)
   github = models.URLField(blank=True)
