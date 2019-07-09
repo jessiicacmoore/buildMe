@@ -1,8 +1,15 @@
 from django.urls import path
-
-from .views import ProjectListView, ProjectDetailView
+from .views import *
 
 urlpatterns = [
   path('projects/', ProjectListView.as_view()),
-  path('projects/<pk>/', ProjectDetailView.as_view()),
+  path('project/<pk>/', ProjectDetailView.as_view()),
+  path('profiles/', ProfileListView.as_view()),
+  path('profile/<pk>/', ProfileDetailView.as_view()),
+  # path('applications/', ApplicationListView.as_view()),
+  # path('application/<pk>/', ApplicationDetailView.as_view()),
+  # path('tasks/', TaskListView.as_view()),
+  # path('task/<pk>/', TaskDetailView.as_view()),
+  # path('chats/', ChatListView.as_view()),
+  # path('chat/<pk>/', ChatDetailView.as_view())
 ]
