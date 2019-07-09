@@ -12,13 +12,25 @@ class ApplicationSerializer(serializers.ModelSerializer):
         model = Application 
         fields = ('applicant', 'project', 'cover_letter', 'is_hired')
 
+class TaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = ('message', 'stage')
+
+
+# class ChatSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Chat
+#         fields = ('user', 'message', 'timestamp')
+ 
 class ProjectSerializer(serializers.ModelSerializer):
     owner = PublicProfileSerializer(many=False, read_only=True)
     applications = ApplicationSerializer(many=True, read_only=True)
+    tasks = TaskSerializer(many=True, read_only=True)
 
     class Meta:
         model = Project
-        fields = ('owner', 'title', 'description', 'project_type', 'is_draft', 'creation_date', 'published_date', 'applications')
+        fields = ('owner', 'title', 'description', 'project_type', 'tasks', 'is_draft', 'creation_date', 'published_date', 'applications')
 
 class ProfileSerializer(serializers.ModelSerializer):
     applications = ApplicationSerializer(many=True, read_only=True)
@@ -29,17 +41,3 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = ('first_name', 'last_name', 'profile', 'profile_picture', 'description', 'website', 'linkedin', 'github', 'projects', 'applications')
 
 
-
-
-
-
-
-# class Chat(serializers.ModelSerializer):
-#     class Meta:
-#         model = Chat
-#         fields = ('user', 'application', 'message', 'timestamp')
- 
-# class Task(serializers.ModelSerializer):
-#     class Meta:
-#         model = Task
-#         fields = ('project', 'message', 'stage')
