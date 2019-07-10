@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
-import "./app.scss";
 import hero from "./hero.jpg";
 import axios from "axios";
+
+import './styles/app.scss'
 
 const App = () => {
 
