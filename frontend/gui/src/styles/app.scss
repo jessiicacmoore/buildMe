@@ -1,0 +1,72 @@
+@import 'variables';
+
+.splash-page-header {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+
+
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo span {
+      color: $primary-clr;
+    }
+
+    ul li {
+      display: inline-block;
+    }
+    ul li::after {
+      display: inline-block;
+    }
+
+    li+li {
+      margin-left: 1em;
+    }
+  }
+
+  .text-container {
+    h2 {
+      font-size: 2rem;
+
+    }
+
+    .btn {
+      padding: .5em 1.75em;
+      text-align: center;
+      display: inline-block;
+      border-radius: 2em;
+      border: .2em solid $primary-clr;
+      font-weight: 700;
+    }
+
+    .btn + .btn {
+      margin-left: 1em;
+    }
+
+    .btn-full {
+      background-color: $primary-clr;
+      color: $off-white-clr;
+      transition: $ease;
+    }
+
+    .btn-full:hover,
+    .btn-full:focus {
+      background-color: $off-white-clr;
+      color: $primary-clr;
+    }
+
+    .btn-ghost {
+      color: $primary-clr;
+    }
+
+    .btn-ghost:hover,
+    .btn-ghost:focus {
+      background-color: $primary-clr;
+      color: $off-white-clr;
+    }
+  }
+}
