@@ -1,7 +1,8 @@
 import React from 'react';
-import Landing from './Components/Landing';
-import SignInForm from './Components/SignInForm';
-import ProjectForm from "./Components/ProjectForm";
+import ProjectList from './Components/ProjectList';
+import { connect } from 'react-redux';
+import * as actions from './store/actions/auth';
+import ProjectForm from './Components/ProjectForm';
 
 
 // import 'antd/dist/antd.css';
@@ -16,21 +17,34 @@ import ProjectForm from "./Components/ProjectForm";
   // }, [])
 
 const App = () => {
+
+  // componentDidMount() {
+  //   this.props.onTryAutoSignup();
+  // }
+
   return (
     <div>
-    <Landing />
-    <h1>POST</h1>
-    <ProjectForm 
-      requestType="post"
-      projectID="1"
-    />
-    <h1>PUT</h1>
-    <ProjectForm 
-      requestType="put"
-      projectID="1"
-    />
+      <ProjectForm />
+      <ProjectList />
     </div>
   )
 };
 
+// <ProjectForm {...this.props} />
+
+// const mapStateToProps = state => {
+//   return {
+//     isAuthenticated: state.token !== null
+//   }
+// }
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onTryAutoSignup: () => dispatch(actions.authCheckState())
+//   }
+
 export default App;
+
+
+
+// export default connect(mapStateToProps, mapDispatchToProps)(App);

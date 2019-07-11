@@ -1,0 +1,47 @@
+@import "./variables";
+
+.project-list-item {
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: 8em 1fr;
+  justify-content: space-between;
+  grid-gap: 3em;
+  margin: 2em 0;
+  padding: 2em;
+  border-radius: .5em;
+  
+  .img-container {
+    align-self: center;
+
+    img {
+      height: 8em;
+      width: 8em;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+
+  .content-container {
+    h2 {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: $primary-clr;
+    }
+    h3{
+      font-size: 1.25rem;
+    }
+    p,
+    .date {
+      color: $mid-grey-clr;
+    }
+    p {
+      margin: 1em auto;
+      line-height: 1.75;
+    }
+    .date {
+      font-size: .8rem;
+    }
+  }
+  
+  
+}

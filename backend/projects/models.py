@@ -25,9 +25,9 @@ class Project(models.Model):
   title = models.CharField(max_length=255)
   description = models.TextField()
   project_type = models.CharField(max_length=50, choices=TYPE_CHOICES, default='full_project')
-  is_draft = models.BooleanField(default=True)
+  # is_draft = models.BooleanField(default=True)
   creation_date = models.DateField(auto_now_add=True)
-  published_date = models.DateField(blank=True)
+  # published_date = models.DateField(blank=True)
   
 class Application(models.Model):
   applicant = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="applications")

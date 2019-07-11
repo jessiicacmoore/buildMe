@@ -3,8 +3,9 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import FormCheck from "react-bootstrap/FormCheck";
 import axios from "axios";
+import qs from 'qs';
 
-const ProjectForm = ({requestType, projectID}) => {
+const ProjectForm = ({requestType, projectID, btnText}) => {
 
   const handleFormSubmit = (event, requestType, projectID) => {
     event.preventDefault();
@@ -12,26 +13,57 @@ const ProjectForm = ({requestType, projectID}) => {
     const description = event.target.elements.description.value;
     const projectType = event.target.elements.projectType.value;
 
-    switch (requestType) {
-      case "post":
-        return axios.post('localhost:8000/api/project/create', {
+    // let axiosConfig = {
+    //   headers: {
+    //       'Content-Type': 'application/json;charset=UTF-8',
+    //       "Access-Control-Allow-Origin": "*"
+    //   }
+    // };
+
+
+
+        // const data = {
+        //   "owner": 1,
+        //   "title": title,
+        //   "description": description,
+        //   "project_type": projectType,
+          // "is_draft": false,
+          // "published_date": "null",
+        //   "tasks": []
+        // }
+
+        // const url = 'http://localhost:8000/api/project/';
+
+        // return axios({
+        //         method: 'POST',
+        //         headers: { 'content-type': 'application/x-www-form-urlencoded' },
+        //         data: qs.stringify(data),
+        //         url,
+        //       }).then(res => console.log(res))
+        //         .catch(error => console.log(error))
+
+    // if (requestType === "post") {
+        return axios.post('http://localhost:8000/api/project/', {
           "owner": 1,
           "title": title,
           "description": description,
-          "project_type": projectType,
+          // "project_type": projectType,
+          "applications": [],
+          "tasks": []      
         }) 
-          .then(res => console.log(res))
+          .then(res => console.log("Post Success", res))
           .catch(error => console.log(error));
-      case "put":
-          return axios.put(`localhost:8000/api/project/${projectID}/update`, {
-            "owner": 1,
-            "title": title,
-            "description": description,
-            "project_type": projectType,
-          }) 
-            .then(res => console.log(res))
-            .catch(error => console.log(error));
-    }
+    //   } else if (requestType === "put") {
+    //     return axios.put(`http://localhost:8000/api/project/${projectID}/`, {
+    //       "owner": 1,
+    //       "title": title,
+    //       "description": description,
+    //       "project_type": projectType,
+    //     }) 
+    //       .then(res => console.log("Put Success", res))
+    //       .catch(error => console.log(error));
+    //  }
+
 
     console.log(title, description, projectType)
   };

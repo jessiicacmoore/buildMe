@@ -31,9 +31,9 @@ class ProjectSerializer(serializers.ModelSerializer):
             'title',
             'description',
             'project_type',
-            'is_draft',
+            # 'is_draft',
             'creation_date',
-            'published_date',
+            # 'published_date',
             'applications',
             'tasks'
         )
