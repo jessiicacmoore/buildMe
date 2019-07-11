@@ -1,4 +1,6 @@
 # from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework import viewsets
 from projects.models import CustomUser, Project, Application, Chat, Task
 from .serializers import ProfileSerializer, ProjectSerializer, ApplicationSerializer, TaskSerializer
 
