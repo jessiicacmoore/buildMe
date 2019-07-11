@@ -24,7 +24,6 @@ const App = () => {
 
   return (
     <div>
-      <ProjectForm />
       <ProjectList />
     </div>
   )
