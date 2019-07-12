@@ -27,18 +27,13 @@ const mapStateToProps = state => {
   };
 };
 
-  return (
-    <Router>
-      <div className="app">
-        <Switch>
-        <Route path="/" exact component={Landing}/>
-        <Route path="/projects" exact component={ProjectViewContainer}/>
-        </Switch>
-      </div>
-    </Router>
-  )
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoSignup: () => dispatch(actions.authCheckState())
+  };
 };
 
-export default App;
-
-
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
