@@ -15,6 +15,7 @@ const ProjectList = ({handleProjectDetail}) => {
     // const url = base_url + filter_criteria;
     const response = await fetch(base_url);
     const data = await response.json();
+    console.log(data);
     setAllProjects(data);
   };
 

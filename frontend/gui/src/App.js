@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from './store/actions/auth';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import ProjectViewContainer from "./Components/ProjectViewContainer";
+import Landing from "./Components/Landing";
 
 // import 'antd/dist/antd.css';
 
@@ -21,25 +23,17 @@ const App = () => {
   // }
 
   return (
-    <ProjectViewContainer />
+    <Router>
+      <div className="app">
+        <Switch>
+        <Route path="/" exact component={Landing}/>
+        <Route path="/projects" exact component={ProjectViewContainer}/>
+        </Switch>
+      </div>
+    </Router>
   )
 };
-
-// <ProjectForm {...this.props} />
-
-// const mapStateToProps = state => {
-//   return {
-//     isAuthenticated: state.token !== null
-//   }
-// }
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onTryAutoSignup: () => dispatch(actions.authCheckState())
-//   }
 
 export default App;
 
 
-
-// export default connect(mapStateToProps, mapDispatchToProps)(App);

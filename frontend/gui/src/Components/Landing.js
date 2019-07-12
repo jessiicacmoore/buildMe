@@ -31,8 +31,8 @@ const Landing = () => {
       <div className="hero-section">
         <div className="text-container">
           <h2>Lorem ipsum dolor sit amet consectetur.</h2>
-          <a href="" className="btn btn-full">Sign Up</a>
-          <a href="" className="btn btn-ghost">Projects</a>
+          <a href="/" className="btn btn-full">Sign Up</a>
+          <a href="/projects" className="btn btn-ghost">Projects</a>
         </div>
         <img src={hero} alt="buildMe"/>
       </div>
