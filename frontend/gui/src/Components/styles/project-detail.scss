@@ -38,6 +38,17 @@
     color: $mid-grey-clr;
   }
 
+  p {
+    line-height: 1.75;
+    display: block;
+    margin: 0;
+    padding-bottom: 1em;
+  }
+
+  p:first-of-type {
+    padding-top: 1em;
+  }
+
   .btn {
     padding: .5em 1.75em;
     text-align: center;
@@ -48,3 +59,4 @@
   }
 
 }
+
