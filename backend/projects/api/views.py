@@ -4,7 +4,10 @@ from rest_framework import viewsets
 from projects.models import CustomUser, Project, Application, Chat, Task
 from .serializers import ProfileSerializer, ProjectSerializer, ApplicationSerializer, TaskSerializer
 
-from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
+
+
+from rest_framework import viewsets, filters
 
 class ProfileViewSet(viewsets.ModelViewSet):
 
@@ -15,6 +18,8 @@ class ProjectViewSet(viewsets.ModelViewSet):
 
     serializer_class = ProjectSerializer
     queryset = Project.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filterset_fields = ('owner__id',)
 
 class ApplicationViewSet(viewsets.ModelViewSet):
 
