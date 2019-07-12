@@ -4,6 +4,7 @@ import Hoc from "./hoc/hoc";
 
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
+import ProjectViewContainer from "./Components/ProjectViewContainer";
 import Landing from "./Components/Landing";
 
 const BaseRouter = () => (
@@ -11,6 +12,7 @@ const BaseRouter = () => (
   <Hoc>
     <Route path="/login" component={Login} />
     <Route path="/signup" component={Signup} />
+    <Route path="/projects" component={ProjectViewContainer} />
     <Route exact path="/" component={Landing} />;
   </Hoc>
   
