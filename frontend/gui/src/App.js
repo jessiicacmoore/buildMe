@@ -27,91 +27,18 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onTryAutoSignup: () => dispatch(actions.authCheckState())
-  };
+  return (
+    <Router>
+      <div className="app">
+        <Switch>
+        <Route path="/" exact component={Landing}/>
+        <Route path="/projects" exact component={ProjectViewContainer}/>
+        </Switch>
+      </div>
+    </Router>
+  )
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
-
-// <CustomLayout {...props}>
-// <BaseRouter />
-// </CustomLayout>
-
-// <HomepageLayout {...props}>
-// <BaseRouter />
-// </HomepageLayout>
-
-// class App extends Component {
-//   componentDidMount() {
-//     this.props.onTryAutoSignup();
-//   }
-
-//   render() {
-//     return (
-//       <Router>
-//         <CustomLayout {...this.props}>
-//           <BaseRouter />
-//         </CustomLayout>
-//       </Router>
-//     );
-//   }
-// }
+export default App;
 
 
-
-// import React from 'react';
-// import ProjectList from './Components/ProjectList';
-// import { connect } from 'react-redux';
-// import * as actions from './store/actions/auth';
-// import ProjectForm from './Components/ProjectForm';
-// import Landing from './Components/Landing';
-
-// const App = () => {
-
-
-
-//   return (
-//     <div>
-//       <Landing />
-//     </div>
-//   )
-// };
-
-// export default App;
-// <ProjectForm {...this.props} />
-
-// const mapStateToProps = state => {
-//   return {
-//     isAuthenticated: state.token !== null
-//   }
-// }
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onTryAutoSignup: () => dispatch(actions.authCheckState())
-//   }
-
-
-  // componentDidMount() {
-  //   this.props.onTryAutoSignup();
-  // }
-
-
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-
-// import 'antd/dist/antd.css';
-
-  // useEffect(() => {
-  //   axios
-  //   .get('http://127.0.0.1:8000/api/projects')
-  //   .then(response => {
-  //     console.log(response.data);
-  //     setProjects(response.data)
-  //   })
-  // }, [])
