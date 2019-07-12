@@ -5,7 +5,6 @@ import axios from "axios"
 import "./styles/project-list.scss";
 
 const ProjectList = () => {
-  // temporary project until we have cors figured out
   const url = "http://localhost:8000/api/project/"
   const allProjects = axios.get(url).then(response => {
     console.log(response.data)

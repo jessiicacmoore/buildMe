@@ -10,5 +10,5 @@ const ProjectDetail = (project) => {
       Posted by: {owner.name}
     </h2>
     <p className="project-description">
-    </pproject.description>
+    </project.description>
   </article>

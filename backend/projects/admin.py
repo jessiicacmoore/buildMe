@@ -18,7 +18,7 @@ class CustomUserAdmin(UserAdmin):
       )
 
     model = CustomUser
-    list_display = ['email', 'username', 'website']
+    list_display = ['email', 'username', 'website', 'is_superuser']
 
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Project)
