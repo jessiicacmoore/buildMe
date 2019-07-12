@@ -8,9 +8,10 @@
   justify-content: space-between;
   padding: 2em;
   border-radius: .5em;
+  box-shadow: $shadow;
 
   & + .project-list-item {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
   }
 
   @media screen and (max-width: 900px){
@@ -56,6 +57,4 @@
       font-size: .8rem;
     }
   }
-  
-  
 }

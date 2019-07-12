@@ -3,7 +3,7 @@
 .project-container {
   display: grid;
   grid-template-columns: 2fr 3fr;
-  grid-gap: 3rem;
+  grid-gap: 1.5rem;
   position: relative;
   padding: 1rem 0;
 
@@ -17,6 +17,20 @@
   .btn-full:focus {
     background-color: $off-white-clr;
     color: $primary-clr;
+  }
+
+  .filters {
+    background-color: #fff;
+    margin-bottom: 1rem;
+    box-shadow: $shadow;
+    padding: 2em;
+    display: flex;
+    justify-content: space-around;
+    h2 {
+      margin: 0;
+    }
+
+
   }
 
 }

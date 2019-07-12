@@ -26,7 +26,10 @@ const ProjectListItem = ({ project, handleProjectDetail }) => {
   };
 
   return (
-    <li className="project-list-item" onClick={() => handleProjectDetail(project, projectOwner)}>
+    <li
+      className="project-list-item"
+      onClick={() => handleProjectDetail(project)}
+    >
       <div className="img-container">
         <img src={projectOwner.profile_picture} />
       </div>
@@ -36,9 +39,7 @@ const ProjectListItem = ({ project, handleProjectDetail }) => {
         <p className="project-description">
           {truncateDescription(project.description)}
         </p>
-        <div className="date">
-        {project.creation_date}
-        </div>
+        <div className="date">{project.creation_date}</div>
       </article>
     </li>
   );

@@ -1,37 +1,57 @@
-import React, { useState } from "react";
-import ProjectList from './ProjectList';
-import ProjectDetail from './ProjectDetail';
-
-import "./styles/project-view-container.scss"
+import React, { useEffect, useState } from "react";
+import ProjectList from "./ProjectList";
+import ProjectDetail from "./ProjectDetail";
+import "./styles/project-view-container.scss";
 
 const ProjectContainer = ({}) => {
+  const [selectedProject, setProject] = useState("");
+  const [selectedProjectOwner, setProjectOwner] = useState("");
+  const [filter, setFilter] = useState("all")
+
+  const handleProjectDetail = (project) => {
+    setProject(project);
+    console.log("handeling detail click");
+  };
+
   const [allProjects, setAllProjects] = useState([]);
 
-  const [selectedProject, setProject] = useState("")
-  const [selectedProjectOwner, setProjectOwner] = useState("")
+  useEffect(() => {
+    getAllProjects("all");
+  }, []);
 
-  
-  const handleProjectDetail = (project, owner) => {
-    setProject(project)
-    setProjectOwner(owner)
-    console.log("handline detail click")
-  }
+  const getAllProjects = async filter_criteria => {
+    let base_url = "http://localhost:8000/api/project/";
 
-  const handleFilterClick =  filter => {
-    
+    if (filter_criteria === "all") {
+      let allResponse = await fetch(base_url);
+      let allData = await allResponse.json();
+      setAllProjects(allData.reverse());
+      setProject(allData[0]);
+    } else {
+      let ownResponse = await fetch(base_url + "?owner__id=2");
+      let ownData = await ownResponse.json();
+      setAllProjects(ownData.reverse());
+      setProject(ownData[0]);
   }
+    }
+
+
+ 
 
   return (
-  <div className="wrapper project-container">
-    <div className="project-list">
-      <div className="filters">
-        <h2>All Projects</h2>
-        <h2>My Projects</h2>
+    <div className="wrapper project-container">
+      <div className="project-list">
+        <div className="filters">
+          <h2 onClick={() => getAllProjects("all")}>All Projects</h2>
+          <h2 onClick={() => getAllProjects("owned")}>My Projects</h2>
+        </div>
+        <ProjectList
+          allProjects={allProjects}
+          handleProjectDetail={handleProjectDetail}
+        />
       </div>
-      <ProjectList handleProjectDetail={handleProjectDetail}/>
+      <ProjectDetail project={selectedProject}/>
     </div>
-    <ProjectDetail project={selectedProject} owner={selectedProjectOwner} />
-  </div>
   );
 };
 
