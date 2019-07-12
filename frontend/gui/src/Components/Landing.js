@@ -55,8 +55,12 @@ const HomepageLayout = props => {
       <div className="hero-section">
         <div className="text-container">
           <h2>Lorem ipsum dolor sit amet consectetur.</h2>
+          <Link to="/signup">
           <a href="/" className="btn btn-full">Sign Up</a>
+          </Link>
+          <Link to="/project">
           <a href="/projects" className="btn btn-ghost">Projects</a>
+          </Link>
         </div>
         <img src={hero} alt="buildMe" />
 

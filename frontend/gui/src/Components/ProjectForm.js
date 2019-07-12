@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import FormCheck from "react-bootstrap/FormCheck";
 import axios from "axios";
 import qs from 'qs';
+// import { Form, Input, TextArea, Button, Select } from 'semantic-ui-react'
+
 
 const ProjectForm = ({requestType, projectID, btnText}) => {
 
@@ -13,36 +15,6 @@ const ProjectForm = ({requestType, projectID, btnText}) => {
     const description = event.target.elements.description.value;
     const projectType = event.target.elements.projectType.value;
 
-    // let axiosConfig = {
-    //   headers: {
-    //       'Content-Type': 'application/json;charset=UTF-8',
-    //       "Access-Control-Allow-Origin": "*"
-    //   }
-    // };
-
-
-
-        // const data = {
-        //   "owner": 1,
-        //   "title": title,
-        //   "description": description,
-        //   "project_type": projectType,
-          // "is_draft": false,
-          // "published_date": "null",
-        //   "tasks": []
-        // }
-
-        // const url = 'http://localhost:8000/api/project/';
-
-        // return axios({
-        //         method: 'POST',
-        //         headers: { 'content-type': 'application/x-www-form-urlencoded' },
-        //         data: qs.stringify(data),
-        //         url,
-        //       }).then(res => console.log(res))
-        //         .catch(error => console.log(error))
-
-    // if (requestType === "post") {
         return axios.post('http://localhost:8000/api/project/', {
           "owner": 1,
           "title": title,
@@ -64,10 +36,11 @@ const ProjectForm = ({requestType, projectID, btnText}) => {
     //       .catch(error => console.log(error));
     //  }
 
-
     console.log(title, description, projectType)
   };
+
   return (
+
     <Form className="wrapper" onSubmit={ (event) => handleFormSubmit(event, requestType, projectID) }>
       <Form.Group controlId="title">
         <Form.Label>Title</Form.Label>
@@ -87,7 +60,7 @@ const ProjectForm = ({requestType, projectID, btnText}) => {
         </Form.Control>
       </Form.Group>
 
-      <Button variant="primary" type="submit" htmlType="submit">
+      <Button variant="primary" type="submit">
         Create
       </Button>
     </Form>
@@ -95,3 +68,53 @@ const ProjectForm = ({requestType, projectID, btnText}) => {
 };
 
 export default ProjectForm;
+
+
+// import React from 'react'
+// import { Form, Input, TextArea, Button, Select } from 'semantic-ui-react'
+
+// const projectOptions = [
+//   { key: 'm', text: 'Maintenance', value: 'maintenance' },
+//   { key: 'f', text: 'Full Project', value: 'fullproject' },
+// ]
+
+// const FormExampleFieldControlId = () => (
+//   <Form>
+//     <Form.Group widths='equal' onSubmit={ (event) => handleFormSubmit(event, requestType, projectID) }>
+//       <Form.Field
+//         id='form-input-control-first-name'
+//         control={Input}
+//         label='First name'
+//         placeholder='First name'
+//       />
+//       <Form.Field
+//         id='form-input-control-last-name'
+//         control={Input}
+//         label='Last name'
+//         placeholder='Last name'
+//       />
+//       <Form.Field
+//         control={Select}
+//         options={projectOptions}
+//         label={{ children: 'Gender', htmlFor: 'form-select-control-gender' }}
+//         placeholder='Project Type'
+//         search
+//         searchInput={{ id: 'form-select-control-gender' }}
+//       />
+//     </Form.Group>
+//     <Form.Field
+//       id='form-textarea-control-opinion'
+//       control={TextArea}
+//       label='Opinion'
+//       placeholder='Opinion'
+//     />
+//     <Form.Field
+//       id='form-button-control-public'
+//       control={Button}
+//       content='Confirm'
+//       label='Label with htmlFor'
+//     />
+//   </Form>
+// )
+
+// export default FormExampleFieldControlId
