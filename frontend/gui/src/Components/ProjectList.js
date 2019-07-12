@@ -3,7 +3,7 @@ import ProjectListItem from "./ProjectListItem";
 
 import "./styles/project-list.scss";
 
-const ProjectList = () => {
+const ProjectList = ({handleProjectDetail}) => {
   const [allProjects, setAllProjects] = useState([]);
 
   useEffect(() => {
@@ -19,10 +19,10 @@ const ProjectList = () => {
   };
 
   const projectRows = allProjects.map((project, i) => {
-    return <ProjectListItem key={project.id} project={project} />;
+    return <ProjectListItem key={project.id} project={project} handleProjectDetail={handleProjectDetail}/>;
   });
 
-  return <ul>{projectRows}</ul>;
+  return <ul className="project-list">{projectRows}</ul>;
 };
 
 export default ProjectList;

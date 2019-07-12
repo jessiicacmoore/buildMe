@@ -1,9 +1,7 @@
 import React from 'react';
-import ProjectList from './Components/ProjectList';
 import { connect } from 'react-redux';
 import * as actions from './store/actions/auth';
-import ProjectForm from './Components/ProjectForm';
-
+import ProjectViewContainer from "./Components/ProjectViewContainer";
 
 // import 'antd/dist/antd.css';
 
@@ -23,9 +21,7 @@ const App = () => {
   // }
 
   return (
-    <div>
-      <ProjectList />
-    </div>
+    <ProjectViewContainer />
   )
 };
 

@@ -1,0 +1,22 @@
+@import "./variables";
+
+.project-container {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-gap: 3rem;
+  position: relative;
+  padding: 1rem 0;
+
+  .btn-full {
+    background-color: $primary-clr;
+    color: $off-white-clr;
+    transition: $ease;
+  }
+
+  .btn-full:hover,
+  .btn-full:focus {
+    background-color: $off-white-clr;
+    color: $primary-clr;
+  }
+
+}
