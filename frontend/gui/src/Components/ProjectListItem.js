@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./styles/project-list-item.scss";
 
-const ProjectListItem = ({ project }) => {
-  const [proJectOwner, setProjectOwner] = useState("");
+const ProjectListItem = ({ project, handleProjectDetail }) => {
+  const [projectOwner, setProjectOwner] = useState("");
 
   useEffect(() => {
     getOwner();
-    console.log(proJectOwner);
+    console.log(projectOwner);
   }, []);
 
-  const getOwner = async filter_criteria => {
+  const getOwner = async () => {
     const base_url = `http://localhost:8000/api/profile/${project.owner}/`;
-    // const url = base_url + filter_criteria;
     const response = await fetch(base_url);
     const data = await response.json();
     setProjectOwner(data);
@@ -27,13 +26,13 @@ const ProjectListItem = ({ project }) => {
   };
 
   return (
-    <li className="project-list-item">
+    <li className="project-list-item" onClick={() => handleProjectDetail(project, projectOwner)}>
       <div className="img-container">
-        <img src={proJectOwner.profile_picture} />
+        <img src={projectOwner.profile_picture} />
       </div>
       <article className="content-container">
         <h2>{project.title}</h2>
-        <h3>{proJectOwner.username}</h3>
+        <h3>{projectOwner.username}</h3>
         <p className="project-description">
           {truncateDescription(project.description)}
         </p>
