@@ -4,17 +4,17 @@ import "./styles/project-detail.scss";
 const ProjectDetail = ({ project }) => {
   const [projectOwner, setProjectOwner] = useState("");
 
-  useEffect(() => {
-    getOwner();
-    console.log(projectOwner);
-  }, [project]);
-
   const getOwner = async () => {
     const base_url = `http://localhost:8000/api/profile/${project.owner}/`;
     const response = await fetch(base_url);
     const data = await response.json();
     setProjectOwner(data);
   };
+
+  useEffect(() => {
+    getOwner();
+    console.log(projectOwner);
+  }, [project]);
 
   if (project.owner) {
     const splitParagraphs = project.description
