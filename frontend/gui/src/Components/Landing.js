@@ -55,8 +55,14 @@ const HomepageLayout = props => {
       <div className="hero-section">
         <div className="text-container">
           <h2>Lorem ipsum dolor sit amet consectetur.</h2>
-          <a href="/" className="btn btn-full">Sign Up</a>
-          <a href="/projects" className="btn btn-ghost">Projects</a>
+          {authenticated ? (
+            <a href="/projects" className="btn btn-full">Projects</a>
+          ) : (
+            <React.Fragment>
+                <a href="/signup" className="btn btn-full">Sign Up</a>
+                <a href="/login" className="btn btn-ghost">Sign In</a>
+            </React.Fragment>
+          )}
         </div>
         <img src={hero} alt="buildMe" />
 
