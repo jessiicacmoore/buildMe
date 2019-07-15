@@ -23,6 +23,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         )
 
 class ProjectSerializer(serializers.ModelSerializer):
+    owner = ProfileSerializer();
     class Meta:
         model = Project
         fields = (
@@ -39,6 +40,9 @@ class ProjectSerializer(serializers.ModelSerializer):
         )
 
 class ApplicationSerializer(serializers.ModelSerializer):
+    project = ProjectSerializer(read_only=True);
+    applicant = ProfileSerializer(read_only=True);
+
     class Meta:
         model = Application 
         fields = (

@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/project-list-item.scss";
 
-const ProjectListItem = ({ project, handleProjectDetail }) => {
+const ApplicantListItem = ({ applicant, handleApplicantDetail }) => {
 
   const truncateDescription = str => {
     const maxLength = 100;
@@ -12,24 +12,25 @@ const ProjectListItem = ({ project, handleProjectDetail }) => {
     }
   };
 
+  console.log(applicant)
+
   return (
     <li
       className="project-list-item"
-      onClick={() => handleProjectDetail(project)}
+      onClick={() => handleApplicantDetail(applicant)}
     >
       <div className="img-container">
-        <img src={project.owner.profile_picture} />
+        <img src={applicant.applicant.profile_picture} />
       </div>
       <article className="content-container">
-        <h2>{project.title}</h2>
-        <h3>{project.owner.username}</h3>
+        <h2>{applicant.project.title}</h2>
+        <h3>{applicant.applicant.username} - {applicant.applicant.profile}</h3>
         <p className="project-description">
-          {truncateDescription(project.description)}
+          {truncateDescription(applicant.applicant.description)}
         </p>
-        <div className="date">{project.creation_date}</div>
       </article>
     </li>
   );
 };
 
-export default ProjectListItem;
+export default ApplicantListItem;
