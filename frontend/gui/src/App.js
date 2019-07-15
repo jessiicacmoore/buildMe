@@ -7,10 +7,11 @@ import "semantic-ui-css/semantic.min.css";
 // import Landing from "./Components/Landing";
 
 const App = props => {
+  console.log(props)
 
   useEffect(() => {
     props.onTryAutoSignup();
-  });
+  }, []);
 
   return (
     <Router>

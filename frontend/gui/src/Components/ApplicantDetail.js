@@ -1,24 +1,25 @@
 import React from "react";
 import "./styles/project-detail.scss";
 
-const ProjectDetail = ({ project }) => {
+const ProjectDetail = ({ applicant }) => {
 
 
-  if (project.owner) {
-    const splitParagraphs = project.description
+
+  if (applicant.applicant) {
+    const splitParagraphs = applicant.applicant.description
       .split("\n")
       .map(paragraph => <p>{paragraph}</p>);
 
     return (
       <article className="project-detail">
         <div className="detail-header">
-          <h1 className="project-title">{project.title}</h1>
+          <h1 className="project-title">{applicant.applicant.username}</h1>
           <div className="owner-details">
             <img
-              src={project.owner.profile_picture}
+              src={applicant.applicant.profile_picture}
               alt="{project.owner.username}"
             />
-            <h2>{project.owner.username}</h2>
+            <h2>{applicant.applicant.profile}</h2>
           </div>
         </div>
 
@@ -26,7 +27,7 @@ const ProjectDetail = ({ project }) => {
         {splitParagraphs}
 
         <a href="/" className="btn btn-full">
-          Apply
+          Accept?
         </a>
       </article>
     );

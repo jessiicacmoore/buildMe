@@ -18,7 +18,7 @@ const InnerNav = () => {
           <Link to="/projects">
             <li className="nav-item">Projects</li>
           </Link>
-          <Link to="/projects">
+          <Link to="/applicants">
             <li className="nav-item">My Applicants</li>
           </Link>
           <Link to="/">
