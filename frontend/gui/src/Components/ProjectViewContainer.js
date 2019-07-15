@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProjectList from "./ProjectList";
 import ProjectDetail from "./ProjectDetail";
+import InnerNav from "./InnerNav";
 import "./styles/project-view-container.scss";
 import axios from "axios";
 
@@ -25,13 +26,13 @@ const ProjectContainer = () => {
       }
     });
     let data = await resp.json();
-    console.log(data)
+    console.log(data);
 
     // get user data from api
     let userResp = await fetch(`http://localhost:8000/api/profile/${data.pk}/`);
     let userData = await userResp.json();
 
-    console.log(userData)
+    console.log(userData);
     setUser(userData);
   };
 
@@ -62,19 +63,23 @@ const ProjectContainer = () => {
   }, []);
 
   return (
-    <div className="wrapper project-container">
-      <div className="project-list">
-        <div className="filters">
-          <h2 onClick={() => getAllProjects("all")}>All Projects</h2>
-          <h2 onClick={() => getAllProjects("owned")}>My Projects</h2>
+    <React.Fragment>
+      <InnerNav />
+      <main className="wrapper project-container">
+        
+        <div className="project-list">
+          <div className="filters">
+            <h2 onClick={() => getAllProjects("all")}> All Projects </h2>
+            <h2 onClick={() => getAllProjects("owned")}> My Projects </h2>
+          </div>
+          <ProjectList
+            allProjects={allProjects}
+            handleProjectDetail={handleProjectDetail}
+          />
         </div>
-        <ProjectList
-          allProjects={allProjects}
-          handleProjectDetail={handleProjectDetail}
-        />
-      </div>
-      <ProjectDetail project={selectedProject} />
-    </div>
+        <ProjectDetail project={selectedProject} />
+      </main>
+    </React.Fragment>
   );
 };
 
