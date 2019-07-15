@@ -11,6 +11,7 @@
   max-height: 90vh;
   overflow-y: auto;
   overflow-x: hidden;
+  border-top: 1em solid $primary-clr;
 
   .detail-header {
     display: grid;
