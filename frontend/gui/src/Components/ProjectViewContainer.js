@@ -25,10 +25,13 @@ const ProjectContainer = () => {
       }
     });
     let data = await resp.json();
+    console.log(data)
 
     // get user data from api
     let userResp = await fetch(`http://localhost:8000/api/profile/${data.pk}/`);
     let userData = await userResp.json();
+
+    console.log(userData)
     setUser(userData);
   };
 
@@ -44,7 +47,7 @@ const ProjectContainer = () => {
       setProject(allData[0]);
       setFilter(filter_criteria);
     } else {
-      let ownResponse = await fetch(base_url + `?owner__id=2`);
+      let ownResponse = await fetch(base_url + `?owner__id=${user.id}`);
       let ownData = await ownResponse.json();
       setAllProjects(ownData);
       setProject(ownData[0]);
