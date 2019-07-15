@@ -15,7 +15,6 @@ class ProfileViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
 
 class ProjectViewSet(viewsets.ModelViewSet):
-
     serializer_class = ProjectSerializer
     queryset = Project.objects.all()
     filter_backends = (DjangoFilterBackend,)
