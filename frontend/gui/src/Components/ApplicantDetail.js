@@ -1,28 +1,28 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./styles/project-detail.scss";
 
-const ProjectDetail = ({ applicant, user }) => {
-
-
-
-  if (applicant) {
-    const splitParagraphs = applicant.cover_letter
+const ApplicationDetail = ({ application, user }) => {
+  console.log("Application Detail", application, user )
+  
+  if (application.applicant.id) {
+    const splitParagraphs = application.cover_letter
       .split("\n")
       .map(paragraph => <p>{paragraph}</p>);
-    const splitDesc = applicant.applicant.description
+
+    const splitDesc = application.applicant.description
       .split("\n")
       .map(paragraph => <p>{paragraph}</p>);
 
     return (
       <article className="project-detail">
         <div className="detail-header">
-          <h1 className="project-title">{applicant.applicant.username}</h1>
+          <h1 className="project-title">{application.applicant.username}</h1>
           <div className="owner-details">
             <img
-              src={applicant.applicant.profile_picture}
+              src={application.applicant.profile_picture}
               alt="{project.owner.username}"
             />
-            <h2>{applicant.applicant.profile}</h2>
+            <h2>{application.applicant.profile}</h2>
           </div>
         </div>
 
@@ -35,7 +35,7 @@ const ProjectDetail = ({ applicant, user }) => {
           {splitDesc}
         </div>
 
-        {applicant.applicant.id === user.id ? 
+        {application.applicant.id === user.id ? 
           ""
          :
           <a href="/" className="btn btn-full">
@@ -49,4 +49,4 @@ const ProjectDetail = ({ applicant, user }) => {
   }
 };
 
-export default ProjectDetail;
+export default ApplicationDetail;

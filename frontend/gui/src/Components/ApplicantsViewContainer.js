@@ -1,66 +1,64 @@
 import React, {useEffect, useState} from "react";
 
 import InnerNav from "./InnerNav";
-import ApplicantList from "./ApplicantList"
+// import ApplicantListItem from "./ApplicantListItem"
 import ApplicantDetail from "./ApplicantDetail"
 
-const ApplicationsViewContainer = () => {
+const ApplicationsViewContainer = ({ user  }) => {
 
 
-  const [user, setUser] = useState("");
-  const [applicants, setApplicants] = useState([])
-  const [selectedApplicant, setApplicant] = useState("")
+  const [applications, setApplications] = useState([])
+  const [selectedApplication, setSelectedApplication] = useState("")
 
-  const handleApplicantDetail = applicant => {
-    setApplicant(applicant);
+  const handleApplicationDetail = application => {
+    setSelectedApplication(application);
   };
 
 
-  const getUser = async () => {
-    // get current user id
-    const url = "http://localhost:8000/rest-auth/user/";
-    const token = localStorage.getItem("token");
-
-    let resp = await fetch(url, {
-      headers: {
-        authorization: "Token " + token
-      }
-    });
-    let data = await resp.json();
-
-    // get user data from api
-    let apiUrl = `http://localhost:8000/api/profile/${data.pk}/`
-    let apiResp = await fetch(apiUrl)
-    let apiData = await apiResp.json();
-    // console.log("DATA:")
-    // console.log(apiData)
-    // console.log(props.foo)
-    setUser(apiData);
-  };
-  
-
-  const getApplicants = async filter_criteria => {
-    getUser();
+  const getApplications = async(filter_criteria, user) => {
+    // getUser();
+    console.log("getApplicants: User", user)
 
     let base_url = "http://localhost:8000/api/application/";
 
     if (filter_criteria === "all") {
+
       let allResponse = await fetch(base_url);
       let allData = await allResponse.json();
-      let filteredData = allData.filter(obj => obj.project.owner.id === user.id)
-      setApplicants(filteredData.reverse());
-      setApplicant(filteredData[0]);
+
+      // Need to find way to filter applicants now that i dont have access to nested relationships
+      setApplications(allData.reverse())
+      setSelectedApplication(allData[0])
+
+
     } else {
       let ownResponse = await fetch(base_url + `?applicant__id=${user.id}`);
       let ownData = await ownResponse.json();
-      setApplicants(ownData);
-      setApplicant(ownData[0]);
+
+      setApplications(ownData);
+      setSelectedApplication(ownData[0]);
     }
   };
 
   useEffect(() => {
-    getApplicants("all");
+    getApplications("all", user);
   }, [])
+
+
+  const truncateDescription = str => {
+    const maxLength = 100;
+    if (!str) {
+      return ""
+    }
+
+    if (str.length > maxLength) {
+      return str.substring(0, maxLength) + "...";
+    } else {
+      return str;
+    }
+  };
+
+
 
   return (
     <React.Fragment>
@@ -68,15 +66,38 @@ const ApplicationsViewContainer = () => {
       <main className="wrapper project-container">
         <div className="project-list">
           <div className="filters">
-            <h2 onClick={() => getApplicants("all")}>Applicants</h2>
-            <h2 onClick={() => getApplicants("owned")}>My Applications</h2>
+            <h2 onClick={() => getApplications("all")}>Applicants</h2>
+            <h2 onClick={() => getApplications("owned")}>My Applications</h2>
           </div>
-          <ApplicantList
-            applicants={applicants}
-            handleApplicantDetail={handleApplicantDetail}
-          />
+
+          <ul className="project-list">
+            {
+              applications.map((application, i) => {
+                let applicant = application.applicant;
+                let project = application.project
+                return (
+                  <li key={application.id}
+                    className="project-list-item"
+                  >
+                    <div className="img-container">
+                      <img src={applicant.profile_picture} alt={applicant.username}/>
+                    </div>
+                    <article className="content-container">
+                      {/* <h2>{application.project.title}</h2> */}
+                      <h3>{applicant.username} - {applicant.profile}</h3>
+                      <p className="project-description">
+                        {truncateDescription(project.description)}
+                      </p>
+                    </article>
+                  </li>
+
+                )
+              })
+            }
+          </ul>
+
         </div>
-        <ApplicantDetail applicant={selectedApplicant} user={user}/>
+        {/* <ApplicantDetail application={selectedApplicant} user={user}/> */}
       </main>
     </React.Fragment>
   );

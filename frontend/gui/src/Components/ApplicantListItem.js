@@ -1,10 +1,15 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./styles/project-list-item.scss";
 
-const ApplicantListItem = ({ applicant, handleApplicantDetail }) => {
+const ApplicationListItem = ({ applicant, application }) => {
+
 
   const truncateDescription = str => {
     const maxLength = 100;
+    if (!str) {
+      return ""
+    }
+
     if (str.length > maxLength) {
       return str.substring(0, maxLength) + "...";
     } else {
@@ -16,20 +21,19 @@ const ApplicantListItem = ({ applicant, handleApplicantDetail }) => {
   return (
     <li
       className="project-list-item"
-      onClick={() => handleApplicantDetail(applicant)}
     >
       <div className="img-container">
-        <img src={applicant.applicant.profile_picture} alt={applicant.applicant.username}/>
+        <img src={applicant.profile_picture} alt={applicant.username}/>
       </div>
       <article className="content-container">
-        <h2>{applicant.project.title}</h2>
-        <h3>{applicant.applicant.username} - {applicant.applicant.profile}</h3>
+        {/* <h2>{application.project.title}</h2> */}
+        <h3>{applicant.username} - {applicant.profile}</h3>
         <p className="project-description">
-          {truncateDescription(applicant.applicant.description)}
+          {truncateDescription(application.project.description)}
         </p>
       </article>
     </li>
   );
 };
 
-export default ApplicantListItem;
+export default ApplicationListItem;

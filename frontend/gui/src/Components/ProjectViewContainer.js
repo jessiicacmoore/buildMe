@@ -4,37 +4,36 @@ import ProjectDetail from "./ProjectDetail";
 import InnerNav from "./InnerNav";
 import "./styles/project-view-container.scss";
 
-const ProjectContainer = ({...props}) => {
+const ProjectContainer = ({user}) => {
   const [selectedProject, setProject] = useState("");
-  const [user, setUser] = useState("");
 
   const handleProjectDetail = project => {
     setProject(project);
   };
 
-  const getUser = async () => {
-    // get current user id
-    const url = "http://localhost:8000/rest-auth/user/";
-    const token = localStorage.getItem("token");
+  // const getUser = async () => {
+  //   // get current user id
+  //   const url = "http://localhost:8000/rest-auth/user/";
+  //   const token = localStorage.getItem("token");
 
-    let resp = await fetch(url, {
-      headers: {
-        authorization: "Token " + token
-      }
-    });
-    let data = await resp.json();
+  //   let resp = await fetch(url, {
+  //     headers: {
+  //       authorization: "Token " + token
+  //     }
+  //   });
+  //   let data = await resp.json();
 
-    // get user data from api
-    let userResp = await fetch(`http://localhost:8000/api/profile/${data.pk}/`);
-    let userData = await userResp.json();
+  //   // get user data from api
+  //   let userResp = await fetch(`http://localhost:8000/api/profile/${data.pk}/`);
+  //   let userData = await userResp.json();
 
-    setUser(userData);
-  };
+  //   setUser(userData);
+  // };
 
   const [allProjects, setAllProjects] = useState([]);
 
   const getAllProjects = async filter_criteria => {
-    getUser();
+    // getUser();
     
     let base_url = "http://localhost:8000/api/project/";
 
