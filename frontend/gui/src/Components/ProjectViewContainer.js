@@ -34,6 +34,8 @@ const ProjectContainer = ({...props}) => {
   const [allProjects, setAllProjects] = useState([]);
 
   const getAllProjects = async filter_criteria => {
+    getUser();
+    
     let base_url = "http://localhost:8000/api/project/";
 
     if (filter_criteria === "all") {
@@ -51,7 +53,6 @@ const ProjectContainer = ({...props}) => {
 
   useEffect(() => {
     getAllProjects("all");
-    getUser();
   }, []);
 
   return (

@@ -5,7 +5,7 @@ const ProjectDetail = ({ applicant }) => {
 
 
 
-  if (applicant.applicant) {
+  if (applicant) {
     const splitParagraphs = applicant.applicant.description
       .split("\n")
       .map(paragraph => <p>{paragraph}</p>);
@@ -32,7 +32,7 @@ const ProjectDetail = ({ applicant }) => {
       </article>
     );
   } else {
-    return <h1>hello</h1>;
+    return <h1>No applications to display</h1>;
   }
 };
 

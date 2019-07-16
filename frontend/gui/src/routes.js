@@ -13,13 +13,38 @@ import Landing from "./Components/Landing";
 
 const BaseRouter = ({ ...props }) => {
 
+  const getUser = async () => {
+    console.log("Getting user from routes")
+    // get current user id
+    const url = "http://localhost:8000/rest-auth/user/";
+    const token = localStorage.getItem("token");
+
+    let resp = await fetch(url, {
+      headers: {
+        authorization: "Token " + token
+      }
+    });
+    let data = await resp.json();
+
+    // get user data from api
+    let userResp = await fetch(`http://localhost:8000/api/profile/${data.pk}/`);
+    let userData = await userResp.json();
+
+    // console.log("userData", userData)
+    // return to variable
+    return userData
+  };
+
+  const user = getUser();
+
+
   return (
     <Hoc>
-      <Route path="/login" component={Login} />{" "}
-      <Route path="/signup" component={Signup} />{" "}
-      <Route path="/projects" component={ProjectViewContainer} />{" "}
-      <Route exact path="/applicants/" component={ApplicantsViewContainer} />{" "}
-      <Route exact path="/" component={Landing} />;{" "}
+      <Route path="/login" component={Login} />
+      <Route path="/signup" component={Signup} />
+      <Route exact path="/projects/" render={(props) => <ProjectViewContainer user={user}/>} />
+      <Route exact path="/applicants/" render={(props) => <ApplicantsViewContainer user={user}/>} />
+      <Route exact path="/" component={Landing} />
     </Hoc>
   );
 };

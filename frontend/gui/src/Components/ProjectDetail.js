@@ -2,12 +2,14 @@ import React from "react";
 import "./styles/project-detail.scss";
 
 const ProjectDetail = ({ project }) => {
-
+  console.log("project detail", project)
 
   if (project.owner) {
     const splitParagraphs = project.description
       .split("\n")
-      .map(paragraph => <p>{paragraph}</p>);
+      .map(paragraph => {
+        return <p>{paragraph}</p>
+      })
 
     return (
       <article className="project-detail">

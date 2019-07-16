@@ -12,7 +12,6 @@ const ApplicantListItem = ({ applicant, handleApplicantDetail }) => {
     }
   };
 
-  console.log(applicant)
 
   return (
     <li
@@ -20,7 +19,7 @@ const ApplicantListItem = ({ applicant, handleApplicantDetail }) => {
       onClick={() => handleApplicantDetail(applicant)}
     >
       <div className="img-container">
-        <img src={applicant.applicant.profile_picture} />
+        <img src={applicant.applicant.profile_picture} alt={applicant.applicant.username}/>
       </div>
       <article className="content-container">
         <h2>{applicant.project.title}</h2>
