@@ -40,7 +40,6 @@ const ApplicationsViewContainer = () => {
   
 
   const getApplicants = async filter_criteria => {
-
     getUser();
 
     let base_url = "http://localhost:8000/api/application/";
@@ -69,15 +68,15 @@ const ApplicationsViewContainer = () => {
       <main className="wrapper project-container">
         <div className="project-list">
           <div className="filters">
-            <h2 onClick={() => getApplicants("all")}> Applicants </h2>
-            <h2 onClick={() => getApplicants("owned")}> My Applications </h2>
+            <h2 onClick={() => getApplicants("all")}>Applicants</h2>
+            <h2 onClick={() => getApplicants("owned")}>My Applications</h2>
           </div>
           <ApplicantList
             applicants={applicants}
             handleApplicantDetail={handleApplicantDetail}
           />
         </div>
-        <ApplicantDetail applicant={selectedApplicant} />
+        <ApplicantDetail applicant={selectedApplicant} user={user}/>
       </main>
     </React.Fragment>
   );

@@ -1,7 +1,8 @@
 import React from "react";
 import "./styles/project-list-item.scss";
 
-const ProjectListItem = ({ project, handleProjectDetail }) => {
+
+const ProjectListItem = ({ project, handleProjectDetail, user }) => {
 
   const truncateDescription = str => {
     const maxLength = 100;

@@ -1,12 +1,15 @@
 import React from "react";
 import "./styles/project-detail.scss";
 
-const ProjectDetail = ({ applicant }) => {
+const ProjectDetail = ({ applicant, user }) => {
 
 
 
   if (applicant) {
-    const splitParagraphs = applicant.applicant.description
+    const splitParagraphs = applicant.cover_letter
+      .split("\n")
+      .map(paragraph => <p>{paragraph}</p>);
+    const splitDesc = applicant.applicant.description
       .split("\n")
       .map(paragraph => <p>{paragraph}</p>);
 
@@ -23,12 +26,22 @@ const ProjectDetail = ({ applicant }) => {
           </div>
         </div>
 
-        <h3>Description</h3>
-        {splitParagraphs}
+        <div className="row">
+          <h3>Application Message</h3>
+          {splitParagraphs}
+        </div>
+        <div className="row">
+          <h3>About Applicant</h3>
+          {splitDesc}
+        </div>
 
-        <a href="/" className="btn btn-full">
-          Accept?
-        </a>
+        {applicant.applicant.id === user.id ? 
+          ""
+         :
+          <a href="/" className="btn btn-full">
+            Accept?
+          </a>
+        } 
       </article>
     );
   } else {
