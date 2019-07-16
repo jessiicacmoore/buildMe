@@ -4,7 +4,7 @@ import InnerNav from "./InnerNav";
 import ApplicantList from "./ApplicantList"
 import ApplicantDetail from "./ApplicantDetail"
 
-const ApplicationsViewContainer = (props) => {
+const ApplicationsViewContainer = () => {
 
 
   const [user, setUser] = useState("");
@@ -49,11 +49,8 @@ const ApplicationsViewContainer = (props) => {
       let allResponse = await fetch(base_url);
       let allData = await allResponse.json();
       let filteredData = allData.filter(obj => obj.project.owner.id === user.id)
-      // console.log(user)
-      // console.log(filteredData)
-      // console.log(allData);
       setApplicants(filteredData.reverse());
-      setApplicant(allData[0]);
+      setApplicant(filteredData[0]);
     } else {
       let ownResponse = await fetch(base_url + `?applicant__id=${user.id}`);
       let ownData = await ownResponse.json();
@@ -63,10 +60,7 @@ const ApplicationsViewContainer = (props) => {
   };
 
   useEffect(() => {
-    // getUser();
     getApplicants("all");
-    // console.log("Props", props)
-    // console.log("Props user", props.user)
   }, [])
 
   return (

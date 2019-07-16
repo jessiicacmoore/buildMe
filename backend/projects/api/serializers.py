@@ -23,7 +23,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         )
 
 class ProjectSerializer(serializers.ModelSerializer):
-    owner = ProfileSerializer();
+    owner = ProfileSerializer(read_only=True);
     class Meta:
         model = Project
         fields = (
