@@ -17,6 +17,9 @@ const App = props => {
     <Router>
     
     <BaseRouter {...props}/>
+    <footer className="root--body">
+      &copy; Created by <a href="https://www.jessicacmoore.com/">Jessica Moore</a>, <a href="https://timkurbanov.ca/">Timur Kurbanov</a>, <a href="https://alexyang.ca/">Alexander Yang</a>
+    </footer>
   
     </Router>
   );
