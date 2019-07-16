@@ -54,7 +54,8 @@ const HomepageLayout = props => {
 
       <div className="hero-section">
         <div className="text-container">
-          <h2>Lorem ipsum dolor sit amet consectetur.</h2>
+          <h2>Team work to make<br/>the <span>dream</span> work.</h2>
+          <h3 className="sub">Work together with fellow junior devs and designers to build portfolio worthy pieces that will get you hired.</h3>
           {authenticated ? (
             <a href="/projects" className="btn btn-full">Projects</a>
           ) : (
