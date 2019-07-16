@@ -1,7 +1,9 @@
 import React from "react";
 import "./styles/project-detail.scss";
+import { Link } from "react-router-dom";
 
-const ProjectDetail = ({ project }) => {
+
+const ProjectDetail = ({ project, user }) => {
   console.log("project detail", project)
 
   if (project.owner) {
@@ -27,13 +29,22 @@ const ProjectDetail = ({ project }) => {
         <h3>Description</h3>
         {splitParagraphs}
 
-        <a href="/" className="btn btn-full">
-          Apply
-        </a>
+        {project.owner.id === user.id ? 
+          <Link to="/applicants">
+          <a href="/applicants" className="btn btn-full">
+            See Applicants
+          </a>
+          </Link>
+
+         :
+          <a href="/" className="btn btn-full">
+            Apply
+          </a>
+        }
       </article>
     );
   } else {
-    return <h1>hello</h1>;
+    return <h1>No Projects To Show</h1>;
   }
 };
 

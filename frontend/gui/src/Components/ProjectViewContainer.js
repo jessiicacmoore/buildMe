@@ -68,9 +68,10 @@ const ProjectContainer = ({...props}) => {
           <ProjectList
             allProjects={allProjects}
             handleProjectDetail={handleProjectDetail}
+            user={user}
           />
         </div>
-        <ProjectDetail project={selectedProject} />
+        <ProjectDetail project={selectedProject} user={user}/>
       </main>
     </React.Fragment>
   );
