@@ -32,12 +32,12 @@ const App = props => {
     let apiUrl = `http://localhost:8000/api/profile/${data.pk}/`
     let apiResp = await fetch(apiUrl)
     let apiData = await apiResp.json();
-    console.log("API DATA --------->")
-    console.log(apiData)
+    // console.log("API DATA --------->")
+    // console.log(apiData)
     setUser(apiData);
 
-    console.log("USER AFTER SETUSER --------->")
-    console.log(user)
+    // console.log("USER AFTER SETUSER --------->")
+    // console.log(user)
   };
 
   useEffect(() => {

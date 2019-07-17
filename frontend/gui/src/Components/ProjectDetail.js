@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 
 const ProjectDetail = ({ project, user }) => {
-  console.log("project detail", project)
 
   if (project.owner) {
     const splitParagraphs = project.description

@@ -37,7 +37,7 @@ const ProjectContainer = () => {
   };
 
 
-  const getProjects = async filter_criteria => {
+  const getProjects = async (filter_criteria, user) => {
     getUser();
     
     let base_url = "http://localhost:8000/api/project/";
@@ -50,6 +50,8 @@ const ProjectContainer = () => {
     } else {
       let ownResponse = await fetch(base_url + `?owner__id=${user.id}`);
       let ownData = await ownResponse.json();
+      console.log("OWN DATA:")
+      console.log(user)
       setProjects(ownData);
       setSelectedProject(ownData[0]);
     }
@@ -65,7 +67,7 @@ const ProjectContainer = () => {
   };
 
   useEffect(() => {
-    getProjects("all");
+    getProjects("all",);
   }, []);
 
   return (
