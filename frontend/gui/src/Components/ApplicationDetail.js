@@ -41,21 +41,21 @@ const ApplicationDetail = ({ application, user, setSelectedApplication }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data)
-      }).then(resp => console.log(resp))
+      }).then(resp => return resp)
     }
 
     const returnApplicableButton = () => {
       if (application.is_hired) {
         return (
-        <button href="/" className="btn btn-full" onClick={() => handleAssembleTeamClick()}>
+        <a href="#" className="btn btn-full" onClick={() => handleAssembleTeamClick()}>
             Team Member Added - Assemble Workspace?
-        </button>
+        </a>
         )
       } else if (user.id !== applicant.id) {
         return (
-          <button href="/" className="btn btn-full" onClick={() => handleAcceptClick()}>
+          <a href="#" className="btn btn-full" onClick={() => handleAcceptClick()}>
             Accept?
-          </button>
+          </a>
         )
       } else {return ""}
     }
