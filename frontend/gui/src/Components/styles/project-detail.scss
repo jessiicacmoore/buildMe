@@ -11,6 +11,11 @@
   max-height: 90vh;
   overflow-y: auto;
   overflow-x: hidden;
+  border-top: 1em solid $primary-clr;
+
+  .row {
+    margin-bottom: 2em;
+  }
 
   .detail-header {
     display: grid;

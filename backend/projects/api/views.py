@@ -10,24 +10,22 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, filters
 
 class ProfileViewSet(viewsets.ModelViewSet):
-
     serializer_class = ProfileSerializer
     queryset = CustomUser.objects.all()
 
 class ProjectViewSet(viewsets.ModelViewSet):
-
     serializer_class = ProjectSerializer
     queryset = Project.objects.all()
     filter_backends = (DjangoFilterBackend,)
     filterset_fields = ('owner__id',)
 
 class ApplicationViewSet(viewsets.ModelViewSet):
-
     serializer_class = ApplicationSerializer
     queryset = Application.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filterset_fields = ('applicant__id', 'is_hired', 'project__id')
 
 class TaskViewSet(viewsets.ModelViewSet):
-
     serializer_class = TaskSerializer
     queryset = Task.objects.all()
 
