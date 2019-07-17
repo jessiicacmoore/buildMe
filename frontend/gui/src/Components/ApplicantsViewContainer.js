@@ -45,10 +45,8 @@ const ApplicationsViewContainer = () => {
     if (filter_criteria === "all") {
       let allResponse = await fetch(base_url);
       let allData = await allResponse.json();
-      let filteredData = allData
-        .filter(obj => obj.project.owner.id === user.id)
-        .reverse();
-      setApplications(filteredData);
+      let filteredData = allData.filter(obj => obj.project.owner.id === user.id)
+      setApplications(filteredData.reverse());
       setSelectedApplication(filteredData[0]);
     } else {
       let ownResponse = await fetch(base_url + `?applicant__id=${user.id}`);

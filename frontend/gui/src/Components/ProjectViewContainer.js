@@ -29,15 +29,14 @@ const ProjectContainer = () => {
     let data = await resp.json();
 
     // get user data from api
-    let apiUrl = `http://localhost:8000/api/profile/${data.pk}/`;
-    let apiResp = await fetch(apiUrl);
-    let apiData = await apiResp.json();
+    let userResp = await fetch(`http://localhost:8000/api/profile/${data.pk}/`);
+    let userData = await userResp.json();
 
-    setUser(apiData);
+    setUser(userData);
   };
 
 
-  const getProjects = async (filter_criteria, user) => {
+  const getProjects = async (filter_criteria) => {
     getUser();
     
     let base_url = "http://localhost:8000/api/project/";
@@ -47,12 +46,10 @@ const ProjectContainer = () => {
       let allData = await allResponse.json();
       setProjects(allData.reverse());
       setSelectedProject(allData[0]);
-    } else {
+    } else if (filter_criteria === "owned"){
       let ownResponse = await fetch(base_url + `?owner__id=${user.id}`);
       let ownData = await ownResponse.json();
-      console.log("OWN DATA:")
-      console.log(user)
-      setProjects(ownData);
+      setProjects(ownData.reverse())
       setSelectedProject(ownData[0]);
     }
   };
@@ -67,7 +64,7 @@ const ProjectContainer = () => {
   };
 
   useEffect(() => {
-    getProjects("all",);
+    getProjects("all");
   }, []);
 
   return (

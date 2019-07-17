@@ -35,7 +35,6 @@ const App = props => {
     // console.log("API DATA --------->")
     // console.log(apiData)
     setUser(apiData);
-
     // console.log("USER AFTER SETUSER --------->")
     // console.log(user)
   };
