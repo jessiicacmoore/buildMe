@@ -1,10 +1,27 @@
-import React from "react";
+import React, {useState} from "react";
 import "./styles/project-detail.scss";
+import axios from "axios";
 
 const ApplicationDetail = ({ application, user }) => {
-  
+
   if (application) {
     let applicant = application.applicant
+
+    const handleAcceptClick = async () => { 
+      const url = `http://localhost:8000/api/application/${application.id}/`
+      const data = {
+        "cover_letter": application.cover_letter,
+        "is_hired": true 
+      }
+
+      let resp = await fetch(url, {
+        method: "PUT",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      }).then(resp => console.log(resp))
+    }
 
     const splitMessage = application.cover_letter
       .split("\n")
@@ -39,14 +56,14 @@ const ApplicationDetail = ({ application, user }) => {
         {applicant.id === user.id ? 
           ""
          :
-          <a href="/" className="btn btn-full">
+          <button href="/" className="btn btn-full" onClick={() => handleAcceptClick()}>
             Accept?
-          </a>
+          </button>
         } 
       </article>
     );
   } else {
-    return <h1>No applications to display</h1>;
+    return <h1>Select Which applications you want to display</h1>;
   }
 };
 

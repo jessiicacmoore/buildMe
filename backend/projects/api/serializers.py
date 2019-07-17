@@ -40,8 +40,8 @@ class ProjectSerializer(serializers.ModelSerializer):
         )
 
 class ApplicationSerializer(serializers.ModelSerializer):
-    project = ProjectSerializer(read_only=True);
     applicant = ProfileSerializer(read_only=True);
+    project = ProjectSerializer(read_only=True);
 
     class Meta:
         model = Application 
@@ -52,6 +52,11 @@ class ApplicationSerializer(serializers.ModelSerializer):
             'cover_letter',
             'is_hired'
         )
+    
+    def put(self, instance, validated_data):
+        instance.is_hired = validated_data.get("is_hired", instance.is_hired)
+        instance.save()
+        return instance
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
