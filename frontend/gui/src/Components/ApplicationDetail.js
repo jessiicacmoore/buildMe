@@ -36,7 +36,7 @@ const ApplicationDetail = ({ application, user }) => {
           {splitDesc}
         </div>
 
-        {applicant.applicant.id === user.id ? 
+        {applicant.id === user.id ? 
           ""
          :
           <a href="/" className="btn btn-full">

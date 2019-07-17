@@ -9,6 +9,11 @@ import Signup from "./Components/Signup"
 import ProjectViewContainer from "./Components/ProjectViewContainer";
 import ApplicantsViewContainer from "./Components/ApplicantsViewContainer";
 import Landing from "./Components/Landing";
+import ProjectForm from "./Components/ProjectForm"
+import RecaptchaForm from "./Components/RecaptchaForm"
+import About from "./Components/About"
+import ApplicationForm from "./Components/ApplicationForm"
+import Donut from "./Components/Donut"
 
 const App = props => {
 
@@ -46,7 +51,6 @@ const App = props => {
 
   return (
     <Router>
-    
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <Route exact path="/projects/" render={() => (
@@ -56,6 +60,15 @@ const App = props => {
         <ApplicantsViewContainer user={user} />
       )} />
       <Route exact path="/" component={Landing} />
+      <Route path="/recaptcha" component={RecaptchaForm} />
+      <Route path="/about" component={About} />
+      <Route path="/project-form" component={ProjectForm} />
+      <Route path="/application-form" component={ApplicationForm} />
+
+
+      <Route path="/donut" component={Donut} />
+
+
       <footer className="root--body">
         &copy; Created by <a href="https://www.jessicacmoore.com/">Jessica Moore</a>, <a href="https://timkurbanov.ca/">Timur Kurbanov</a>, <a href="https://alexyang.ca/">Alexander Yang</a>
       </footer>

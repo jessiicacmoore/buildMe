@@ -37,7 +37,7 @@ const ApplicationsViewContainer = () => {
     setUser(apiData);
   };
 
-  const getApplications = async filter_criteria => {
+  const getApplications = async (filter_criteria) => {
     getUser();
 
     let base_url = "http://localhost:8000/api/application/";
@@ -55,6 +55,8 @@ const ApplicationsViewContainer = () => {
       setSelectedApplication(ownData[0]);
     }
   };
+
+
 
   const truncateDescription = str => {
     const maxLength = 100;
@@ -84,10 +86,7 @@ const ApplicationsViewContainer = () => {
               let project = application.project;
 
               return (
-                <li
-                  className="project-list-item"
-                  onClick={() => handleApplicationDetail(application)}
-                >
+                <li className="project-list-item" onClick={() => handleApplicationDetail(application)}>
                   <div className="img-container">
                     <img
                       src={applicant.profile_picture}
@@ -108,7 +107,7 @@ const ApplicationsViewContainer = () => {
             })}
           </ul>
         </div>
-        <ApplicationDetail applicant={selectedApplication} user={user} />
+        <ApplicationDetail application={selectedApplication} user={user} />
       </main>
     </React.Fragment>
   );

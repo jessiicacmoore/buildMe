@@ -4,6 +4,7 @@ import "./styles/inner-nav.scss";
 
 
 
+
 const InnerNav = () => {
 
   return (
@@ -21,7 +22,7 @@ const InnerNav = () => {
           <Link to="/applicants">
             <li className="nav-item">My Applicants</li>
           </Link>
-          <Link to="/">
+          <Link to="/project-form">
             <li className="nav-item highlight">Add Project</li>
           </Link>
         </ul>
