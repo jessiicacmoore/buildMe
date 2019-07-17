@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./styles/project-detail.scss";
 
 const ProjectDetail = ({ project }) => {
@@ -8,7 +9,7 @@ const ProjectDetail = ({ project }) => {
     getOwner();
     console.log(projectOwner);
   }, [project]);
-
+  
   const getOwner = async () => {
     const base_url = `http://localhost:8000/api/profile/${project.owner}/`;
     const response = await fetch(base_url);
@@ -36,10 +37,11 @@ const ProjectDetail = ({ project }) => {
 
         <h3>Description</h3>
         {splitParagraphs}
-
+        <Link to="/application-form">
         <a href="/" className="btn btn-full">
           Apply
         </a>
+        </Link>
       </article>
     );
   } else {

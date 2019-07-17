@@ -28,12 +28,18 @@ class Project(models.Model):
   # is_draft = models.BooleanField(default=True)
   creation_date = models.DateField(auto_now_add=True)
   # published_date = models.DateField(blank=True)
+
+  def __str__(self):
+    return f"{self.title}"
   
 class Application(models.Model):
   applicant = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="applications")
   project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="applications")
   cover_letter = models.TextField()
   is_hired = models.BooleanField(default=False)
+
+  def __str__(self):
+    return f"{self.applicant}, {self.project}"
 
 class Chat(models.Model):
   user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="messages")

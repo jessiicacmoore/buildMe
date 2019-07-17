@@ -58,7 +58,7 @@ const HomepageLayout = props => {
           <Link to="/signup">
           <a href="/" className="btn btn-full">Sign Up</a>
           </Link>
-          <Link to="/project">
+          <Link to="/projects">
           <a href="/projects" className="btn btn-ghost">Projects</a>
           </Link>
         </div>

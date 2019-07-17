@@ -10,7 +10,7 @@ const ProjectContainer = ({}) => {
 
   const handleProjectDetail = (project) => {
     setProject(project);
-    console.log("handeling detail click");
+    console.log("handling detail click");
   };
 
   const [allProjects, setAllProjects] = useState([]);

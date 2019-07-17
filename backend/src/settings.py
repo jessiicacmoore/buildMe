@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'projects.apps.ProjectsConfig',
     'whitenoise.runserver_nostatic', 
- 
+    'django_filters',
 ]
 
 

@@ -1,10 +1,11 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import FormCheck from "react-bootstrap/FormCheck";
+import "./styles/project-form.scss";
 import axios from "axios";
 import qs from 'qs';
 // import { Form, Input, TextArea, Button, Select } from 'semantic-ui-react'
+
 
 
 const ProjectForm = ({requestType, projectID, btnText}) => {
@@ -36,12 +37,13 @@ const ProjectForm = ({requestType, projectID, btnText}) => {
     //       .catch(error => console.log(error));
     //  }
 
-    console.log(title, description, projectType)
+    // console.log(title, description, projectType)
   };
 
   return (
-
+      
     <Form className="wrapper" onSubmit={ (event) => handleFormSubmit(event, requestType, projectID) }>
+      <h1>Create Project</h1>
       <Form.Group controlId="title">
         <Form.Label>Title</Form.Label>
         <Form.Control name="title" type="text" placeholder="Enter Title" />
@@ -61,7 +63,7 @@ const ProjectForm = ({requestType, projectID, btnText}) => {
       </Form.Group>
 
       <Button variant="primary" type="submit">
-        Create
+        CREATE
       </Button>
     </Form>
   );
@@ -118,3 +120,6 @@ export default ProjectForm;
 // )
 
 // export default FormExampleFieldControlId
+
+
+
