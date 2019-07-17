@@ -23,7 +23,7 @@ class ApplicationViewSet(viewsets.ModelViewSet):
     serializer_class = ApplicationSerializer
     queryset = Application.objects.all()
     filter_backends = (DjangoFilterBackend,)
-    filterset_fields = ('applicant__id',)
+    filterset_fields = ('applicant__id', 'is_hired', 'project__id')
 
 class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer

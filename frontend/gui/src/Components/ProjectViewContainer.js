@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
-import ProjectList from "./ProjectList";
-import ProjectDetail from "./ProjectDetail";
-import InnerNav from "./InnerNav";
-import "./styles/project-view-container.scss";
 
-const ProjectContainer = ({...props}) => {
-  const [selectedProject, setProject] = useState("");
+import InnerNav from "./InnerNav";
+import ProjectDetail from "./ProjectDetail";
+
+import "./styles/project-view-container.scss";
+import "./styles/project-list.scss"
+import "./styles/project-list-item.scss"
+
+const ProjectContainer = () => {
   const [user, setUser] = useState("");
+  const [projects, setProjects] = useState([]);
+  const [selectedProject, setSelectedProject] = useState("");
 
   const handleProjectDetail = project => {
-    setProject(project);
+    setSelectedProject(project);
   };
 
   const getUser = async () => {
@@ -25,15 +29,15 @@ const ProjectContainer = ({...props}) => {
     let data = await resp.json();
 
     // get user data from api
-    let userResp = await fetch(`http://localhost:8000/api/profile/${data.pk}/`);
-    let userData = await userResp.json();
+    let apiUrl = `http://localhost:8000/api/profile/${data.pk}/`;
+    let apiResp = await fetch(apiUrl);
+    let apiData = await apiResp.json();
 
-    setUser(userData);
+    setUser(apiData);
   };
 
-  const [allProjects, setAllProjects] = useState([]);
 
-  const getAllProjects = async filter_criteria => {
+  const getProjects = async filter_criteria => {
     getUser();
     
     let base_url = "http://localhost:8000/api/project/";
@@ -41,18 +45,27 @@ const ProjectContainer = ({...props}) => {
     if (filter_criteria === "all") {
       let allResponse = await fetch(base_url);
       let allData = await allResponse.json();
-      setAllProjects(allData.reverse());
-      setProject(allData[0]);
+      setProjects(allData.reverse());
+      setSelectedProject(allData[0]);
     } else {
       let ownResponse = await fetch(base_url + `?owner__id=${user.id}`);
       let ownData = await ownResponse.json();
-      setAllProjects(ownData);
-      setProject(ownData[0]);
+      setProjects(ownData);
+      setSelectedProject(ownData[0]);
+    }
+  };
+
+  const truncateDescription = str => {
+    const maxLength = 100;
+    if (str.length > maxLength) {
+      return str.substring(0, maxLength) + "...";
+    } else {
+      return str;
     }
   };
 
   useEffect(() => {
-    getAllProjects("all");
+    getProjects("all");
   }, []);
 
   return (
@@ -62,14 +75,31 @@ const ProjectContainer = ({...props}) => {
         
         <div className="project-list">
           <div className="filters">
-            <h2 onClick={() => getAllProjects("all")}> All Projects </h2>
-            <h2 onClick={() => getAllProjects("owned")}> My Projects </h2>
+            <h2 onClick={() => getProjects("all")}> All Projects </h2>
+            <h2 onClick={() => getProjects("owned")}> My Projects </h2>
           </div>
-          <ProjectList
-            allProjects={allProjects}
-            handleProjectDetail={handleProjectDetail}
-            user={user}
-          />
+          <ul className="project-list">
+            {
+              projects.map((project, i) => {
+                let owner = project.owner
+                return (
+                  <li className="project-list-item" onClick={() => handleProjectDetail(project)}>
+                    <div className="img-container">
+                      <img src={owner.profile_picture} alt={owner.username}/>
+                    </div>
+                    <article className="content-container">
+                      <h2>{project.title}</h2>
+                      <h3>{owner.username}</h3>
+                      <p className="project-description">
+                        {truncateDescription(project.description)}
+                      </p>
+                      <div className="date">{project.creation_date}</div>
+                    </article>
+                  </li>
+                )
+              })
+            }
+          </ul>
         </div>
         <ProjectDetail project={selectedProject} user={user}/>
       </main>
