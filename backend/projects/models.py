@@ -28,7 +28,7 @@ class Project(models.Model):
   # is_draft = models.BooleanField(default=True)
   creation_date = models.DateField(auto_now_add=True)
   # published_date = models.DateField(blank=True)
-  is_team_assembled = models.BooleanField(default=False)
+  team_assembled = models.BooleanField(default=False)
 
   def __str__(self):
     return f"{self.title}"

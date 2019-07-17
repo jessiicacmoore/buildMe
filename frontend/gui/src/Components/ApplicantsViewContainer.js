@@ -33,8 +33,7 @@ const ApplicationsViewContainer = () => {
     let apiUrl = `http://localhost:8000/api/profile/${data.pk}/`;
     let apiResp = await fetch(apiUrl);
     let apiData = await apiResp.json();
-
-    setUser(apiData);
+    setUser(apiData)
   };
 
   const getApplications = async (filter_criteria) => {
@@ -55,8 +54,6 @@ const ApplicationsViewContainer = () => {
       setSelectedApplication(ownData[0]);
     }
   };
-
-
 
   const truncateDescription = str => {
     const maxLength = 100;
@@ -107,7 +104,7 @@ const ApplicationsViewContainer = () => {
             })}
           </ul>
         </div>
-        <ApplicationDetail application={selectedApplication} user={user} />
+        <ApplicationDetail application={selectedApplication} user={user} setSelectedApplication={setSelectedApplication}/>
       </main>
     </React.Fragment>
   );
