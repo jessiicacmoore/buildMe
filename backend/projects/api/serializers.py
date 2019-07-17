@@ -32,12 +32,15 @@ class ProjectSerializer(serializers.ModelSerializer):
             'title',
             'description',
             'project_type',
-            # 'is_draft',
             'creation_date',
-            # 'published_date',
             'applications',
-            'tasks'
+            'team_assembled'
         )
+    def put(self, instance, validated_data):
+        instance.team_assembled = validated_data.get("team_assembled", instance.team_assembled)
+        instance.save()
+        print(instance)
+        return instance
 
 class ApplicationSerializer(serializers.ModelSerializer):
     applicant = ProfileSerializer(read_only=True);
@@ -52,7 +55,6 @@ class ApplicationSerializer(serializers.ModelSerializer):
             'cover_letter',
             'is_hired'
         )
-    
     def put(self, instance, validated_data):
         instance.is_hired = validated_data.get("is_hired", instance.is_hired)
         instance.save()
