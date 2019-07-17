@@ -41,7 +41,9 @@ const ApplicationDetail = ({ application, user, setSelectedApplication }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data)
-      }).then(resp => return resp)
+      }).then(resp => {
+        return resp
+      })
     }
 
     const returnApplicableButton = () => {
