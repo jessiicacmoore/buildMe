@@ -6,6 +6,8 @@ import axios from "axios";
 import qs from 'qs';
 // import { Form, Input, TextArea, Button, Select } from 'semantic-ui-react'
 
+import InnerNav from "./InnerNav"
+
 
 
 const ProjectForm = ({requestType, projectID, btnText}) => {
@@ -41,31 +43,33 @@ const ProjectForm = ({requestType, projectID, btnText}) => {
   };
 
   return (
-      
-    <Form className="wrapper" onSubmit={ (event) => handleFormSubmit(event, requestType, projectID) }>
-      <h1>Create Project</h1>
-      <Form.Group controlId="title">
-        <Form.Label>Title</Form.Label>
-        <Form.Control name="title" type="text" placeholder="Enter Title" />
-      </Form.Group>
-
-      <Form.Group controlId="description">
-        <Form.Label>Description</Form.Label>
-        <Form.Control name="description" as="textarea" rows="3" />
-      </Form.Group>
-
-      <Form.Group controlId="project-type">
-        <Form.Label>Select Project Type</Form.Label>
-        <Form.Control name="projectType" as="select">
-          <option>Maintenance</option>
-          <option>Full Project</option>
-        </Form.Control>
-      </Form.Group>
-
-      <Button variant="primary" type="submit">
-        CREATE
-      </Button>
-    </Form>
+      <main>
+        <InnerNav/>
+        <Form className="wrapper" onSubmit={ (event) => handleFormSubmit(event, requestType, projectID) }>
+          <h1>Create Project</h1>
+          <Form.Group controlId="title">
+            <Form.Label>Title</Form.Label>
+            <Form.Control name="title" type="text" placeholder="Enter Title" />
+          </Form.Group>
+    
+          <Form.Group controlId="description">
+            <Form.Label>Description</Form.Label>
+            <Form.Control name="description" as="textarea" rows="3" />
+          </Form.Group>
+    
+          <Form.Group controlId="project-type">
+            <Form.Label>Select Project Type</Form.Label>
+            <Form.Control name="projectType" as="select">
+              <option>Maintenance</option>
+              <option>Full Project</option>
+            </Form.Control>
+          </Form.Group>
+    
+          <Button variant="primary" type="submit">
+            CREATE
+          </Button>
+        </Form>
+      </main>
   );
 };
 
