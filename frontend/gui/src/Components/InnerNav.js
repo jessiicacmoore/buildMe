@@ -22,9 +22,7 @@ const InnerNav = () => {
           <Link to="/applicants">
             <li className="nav-item">Applicants</li>
           </Link>
-          <Link to="/applicants">
-            <li className="nav-item">Workspaces</li>
-          </Link>
+          <a href="https://trusting-nightingale-df9044.netlify.com/#/board-0"><li className="nav-item">Workspaces</li></a>
           <Link to="/project-form">
             <li className="nav-item highlight">Add Project</li>
           </Link>
