@@ -36,7 +36,7 @@ const ProjectDetail = ({ project, user }) => {
           </Link>
 
          :
-          <a href="/" className="btn btn-full">
+          <a href={"/application-form/" + project.id + "/" + user.id} className="btn btn-full">
             Apply
           </a>
         }

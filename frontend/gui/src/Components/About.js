@@ -33,14 +33,16 @@ const About = () => {
   }
 
   return (
-    <div style={video_style}>
-        <div style={content_style}> 
-        <p>Our Mission Statement</p>
-        <h2>We are committed to being the platform of choice among the developers and business owners,</h2>
-        <h2> providing superior products and services, and being a good corporate citizen.</h2>
-        </div>
-      <VideoCover videoOptions={videoOptions} />   
-    </div>
+    <main>
+      <div style={video_style}>
+          <div style={content_style}> 
+          <p>Our Mission Statement</p>
+          <h2>We are committed to being the platform of choice among the developers and business owners,</h2>
+          <h2> providing superior products and services, and being a good corporate citizen.</h2>
+          </div>
+        <VideoCover videoOptions={videoOptions} />   
+      </div>
+    </main>
   );
 };
 

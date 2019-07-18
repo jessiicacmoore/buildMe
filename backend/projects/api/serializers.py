@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.shortcuts import get_object_or_404
 from projects.models import *
 
 
@@ -36,6 +37,7 @@ class ProjectSerializer(serializers.ModelSerializer):
             'applications',
             'team_assembled'
         )
+
     def put(self, instance, validated_data):
         instance.team_assembled = validated_data.get("team_assembled", instance.team_assembled)
         instance.save()
@@ -55,6 +57,17 @@ class ApplicationSerializer(serializers.ModelSerializer):
             'cover_letter',
             'is_hired'
         )
+
+    def create(self, validated_data):
+        print(self)
+        payload = self.data
+        user = CustomUser.objects.get(id=3)
+        cover_letter = validated_data.get("cover_letter")
+        project = Project.objects.get(pk=1)
+        newApp =  Application.objects.create(applicant=user, cover_letter=cover_letter, project=project)
+        return newApp
+
+
     def put(self, instance, validated_data):
         instance.is_hired = validated_data.get("is_hired", instance.is_hired)
         instance.save()

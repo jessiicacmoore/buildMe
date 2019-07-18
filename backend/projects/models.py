@@ -7,7 +7,7 @@ class CustomUser(AbstractUser):
     ('business', 'Business')
   ]
   profile = models.CharField(max_length=50, choices=PROFILE_CHOICES, default='developer')
-  profile_picture = models.URLField()
+  profile_picture = models.URLField(default="https://www.sackettwaconia.com/wp-content/uploads/default-profile.png")
   description = models.TextField()
   website = models.URLField(blank=True)
   linkedin = models.URLField(blank=True)

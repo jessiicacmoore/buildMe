@@ -63,7 +63,7 @@ const App = props => {
       <Route path="/recaptcha" component={RecaptchaForm} />
       <Route path="/about" component={About} />
       <Route path="/project-form" component={ProjectForm} />
-      <Route path="/application-form" component={ApplicationForm} />
+      <Route path="/application-form/:projectId/:userId" component={ApplicationForm} />
 
 
       <Route path="/donut" component={Donut} />

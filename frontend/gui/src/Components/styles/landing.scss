@@ -9,6 +9,10 @@
     align-items: center;
     padding: 1em 0;
 
+    .logo {
+      color: $dark-clr;
+    }
+
     .logo span {
       color: $primary-clr;
     }
