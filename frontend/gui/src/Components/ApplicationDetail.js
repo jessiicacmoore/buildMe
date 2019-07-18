@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import "./styles/project-detail.scss";
-import axios from "axios";
 
 const ApplicationDetail = ({ application, user, setSelectedApplication }) => {
 
   if (application) {
     let applicant = application.applicant
     let project = application.project
+
 
     const handleAcceptClick = async () => { 
       const url = `http://localhost:8000/api/application/${application.id}/`

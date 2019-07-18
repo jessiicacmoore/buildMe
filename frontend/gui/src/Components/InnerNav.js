@@ -20,7 +20,10 @@ const InnerNav = () => {
             <li className="nav-item">Projects</li>
           </Link>
           <Link to="/applicants">
-            <li className="nav-item">My Applicants</li>
+            <li className="nav-item">Applicants</li>
+          </Link>
+          <Link to="/applicants">
+            <li className="nav-item">Workspaces</li>
           </Link>
           <Link to="/project-form">
             <li className="nav-item highlight">Add Project</li>
