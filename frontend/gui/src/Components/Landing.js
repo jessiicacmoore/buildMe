@@ -33,7 +33,9 @@ const HomepageLayout = props => {
             build<span>Me</span>
           </h1>
           <ul className="nav-links">
-            <li className="nav-item">About</li>
+            <Link to="/about">
+              <li className="nav-item">About</li>
+            </Link>
   
             {authenticated ? (
               <li className="nav-item" onClick={() => props.logout()}>
